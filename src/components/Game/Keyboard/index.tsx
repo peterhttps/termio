@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { useGame } from 'hooks';
+import React, { useEffect } from 'react';
+import { useGame, useKeyboard } from 'hooks';
 import { FaBackspace, FaCheck } from 'react-icons/fa';
 import { KeyboardButton, KeyboardLine, OptionsButton, OptionsContainer, Wrapper } from './styles';
-import { setGuessWord } from 'store/game/actions';
-import { useEffect } from 'react';
+import { setKeyboardWord, addKeyboardLetter, removeKeyboardLetter } from '../../../store/keyboard/actions';
+import { calculateWord } from './helper';
 
 export const KEY_BACKSPACE = 'Backspace';
 export const KEY_ENTER = 'Enter';
@@ -15,16 +15,25 @@ const THIRD_LINE =  'ZXCVBNM';
 
 const Keyboard: React.FC = () => {
   const game = useGame();
-  const [actualWord, setActualWord] = useState('');
+  const keyboard = useKeyboard();
 
   const clickKeyboard = (letter: string) => {
-    if (actualWord.length < 5) {
-      setActualWord(word => word + letter)
+    if (keyboard.word.length < 5) {
+      addKeyboardLetter(letter);
     }
   }
 
   const handleKeyboardBack = () => {
-    setActualWord(word => word.slice(0, -1));
+    removeKeyboardLetter();
+  }
+
+  const handleKeyboardEnter = () => {
+    if (keyboard.word.length === 5) {
+      if (game.guesses.length < 6) {
+        calculateWord(keyboard.word, game.winWord);
+        setKeyboardWord('');
+      }
+    }
   }
 
   const handleKeyDown = (event: KeyboardEvent) => {
@@ -33,10 +42,10 @@ const Keyboard: React.FC = () => {
       return;
     }
 
-    // if (event.key === KEY_ENTER && buttonStates.enter) {
-    //   handleKeyboardEnter();
-    //   return;
-    // }
+    if (event.key === KEY_ENTER) {
+      handleKeyboardEnter();
+      return;
+    }
 
     if (KEY_LETTERS.includes(event.key)) {
       clickKeyboard(event.key.toUpperCase());
@@ -44,8 +53,8 @@ const Keyboard: React.FC = () => {
   }
 
   useEffect(() => {
-    setGuessWord(game.actualGuess, actualWord);
-  }, [actualWord, game.actualGuess]);
+    setKeyboardWord(keyboard.word.substring(0, 5));
+  }, [keyboard.word]);
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
@@ -59,18 +68,18 @@ const Keyboard: React.FC = () => {
         <OptionsButton onClick={handleKeyboardBack}>
           <FaBackspace color={"#B1A7A6"} size={24} />
         </OptionsButton>
-        <OptionsButton>
+        <OptionsButton onClick={handleKeyboardEnter}>
           <FaCheck color={"#B1A7A6"} size={20} />
         </OptionsButton>
       </OptionsContainer>
       <KeyboardLine>
-        {Array.from(FIRST_LINE).map(letter => <KeyboardButton key={letter} onClick={() => clickKeyboard(letter)}>{letter}</KeyboardButton>)}        
+        {Array.from(FIRST_LINE).map(letter => <KeyboardButton key={letter} onClick={() => clickKeyboard(letter)} disabled={game.wrongLetters.includes(letter)}>{letter}</KeyboardButton>)}        
       </KeyboardLine>
       <KeyboardLine>
-        {Array.from(SECOND_LINE).map(letter => <KeyboardButton key={letter} onClick={() => clickKeyboard(letter)}>{letter}</KeyboardButton>)}        
+        {Array.from(SECOND_LINE).map(letter => <KeyboardButton key={letter} onClick={() => clickKeyboard(letter)} disabled={game.wrongLetters.includes(letter)}>{letter}</KeyboardButton>)}        
       </KeyboardLine>
       <KeyboardLine>
-        {Array.from(THIRD_LINE).map(letter => <KeyboardButton key={letter} onClick={() => clickKeyboard(letter)}  >{letter}</KeyboardButton>)}        
+        {Array.from(THIRD_LINE).map(letter => <KeyboardButton key={letter} onClick={() => clickKeyboard(letter)} disabled={game.wrongLetters.includes(letter)}>{letter}</KeyboardButton>)}        
       </KeyboardLine>
    </Wrapper>
   );

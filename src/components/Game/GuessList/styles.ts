@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import { LETTER_TYPES } from 'enumerators/defaultVariables';
+import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -6,7 +7,7 @@ export const Wrapper = styled.div`
   margin-top: 16px;
 `;
 
-export const LetterBox = styled.div`
+export const LetterBox = styled.div<{ disabled?: boolean, type?: string }>`
   width: 70px;
   height: 70px;
   border: 3px solid #B1A7A6;
@@ -21,9 +22,29 @@ export const LetterBox = styled.div`
   line-height: 0;
   color: #F5F3F4;
 
+  ${props => props.type === LETTER_TYPES.CORRECT && css`
+    background: #00A32D;
+    border: 3px solid transparent;
+  `}
+
+  ${props => props.type === LETTER_TYPES.WRONG && css`
+    background: #333333;
+    border: 3px solid transparent;
+  `}
+
+  ${props => props.type === LETTER_TYPES.OTHER_SPOT && css`
+    background: #F7A32D;
+    border: 3px solid transparent;
+  `}
+
+  ${props => props.disabled && css`
+    background: #B1A7A6;
+  `}
+
   @media only screen and (max-width: 600px) {
     width: 50px;
     height: 50px;
+    font-size: 32px;
   }
 `;
 

@@ -1,13 +1,16 @@
 import { Store } from 'pullstate';
+import ILetter from '../../interfaces/IGuess';
 
-export const GameStore = new Store<{ guesses: string[][], actualGuess: number }>({
-  guesses: [
-    ['', 'a', '', '', ''],
-    ['', '', '', '', ''],
-    ['', '', '', '', ''],
-    ['', '', '', '', ''],
-    ['', '', '', '', ''],
-    ['', '', '', '', ''],
-  ],
-  actualGuess: 0
+interface IGameStore {
+  guesses: ILetter[][];
+  actualGuess: number;
+  winWord: string;
+  wrongLetters: string[];
+}
+
+export const GameStore = new Store<IGameStore>({
+  guesses: [],
+  wrongLetters: [],
+  actualGuess: 0,
+  winWord: 'ARROZ',
 });

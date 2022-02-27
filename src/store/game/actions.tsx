@@ -1,6 +1,18 @@
+import ILetter from "interfaces/IGuess";
 import { GameStore } from ".";
 
-export const setGuessWord = (actualGuess: number, word: string) =>
+export const addGuessWord = (finalArray: ILetter[]) =>
   GameStore.update(s => {
-    s.guesses[actualGuess] = Array.from(word);
+    s.guesses.push(finalArray);
   });
+
+export const addWrongLetter = (letter: string) =>
+  GameStore.update(s => {
+    s.wrongLetters.push(letter);
+  });
+
+export const addAtualGuess = () =>
+  GameStore.update(s => {
+    s.actualGuess += 1;
+  });
+  

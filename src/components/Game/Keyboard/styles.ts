@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
   margin-top: 16px;
@@ -37,6 +37,11 @@ export const KeyboardButton = styled.button`
   border: none;
   font-size: 24px;
   font-weight: 900;
+
+  ${props => props.disabled && css`
+    background: #333333;
+    color: #B1A7A6;
+  `}
 
   @media only screen and (max-width: 600px) {
     width: 30px;
