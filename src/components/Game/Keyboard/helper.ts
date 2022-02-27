@@ -1,20 +1,29 @@
+import wordsDB from "database/words";
 import { LETTER_TYPES } from "enumerators/defaultVariables";
 import ILetter from "interfaces/IGuess";
 import { addGuessWord, addWrongLetter } from "store/game/actions";
+import { setKeyboardWord } from "store/keyboard/actions";
+import { setWrongAnimation } from '../../../store/animations/actions';
 
 export const calculateWord = (word: string, winWord: string) => {
   const guessArray = Array.from(word);
   const finalArray: ILetter[] = [];
-  const winWordArray = Array.from(winWord);
+  let letterNormalized = winWord;
+  letterNormalized = letterNormalized.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  const winWordArray = Array.from(letterNormalized.toUpperCase());
 
-  guessArray.reverse().map((letter, indexCalc) => {
-    const index = guessArray.length - 1 - indexCalc;
-    if (winWord.includes(letter) && winWord[index] === letter) {
+  if (!wordsDB.includes(word.toLowerCase())) {
+    setWrongAnimation(true);
+    return false;
+  }
+
+  guessArray.map((letter, index) => {
+    if (winWordArray.includes(letter) && winWordArray[index] === letter) {
       winWordArray[index] = '';
-
+      
       return (
         finalArray.push({
-          letter: letter,
+          letter: winWord[index].toUpperCase(),
           type: LETTER_TYPES.CORRECT
         })
       )
@@ -29,6 +38,10 @@ export const calculateWord = (word: string, winWord: string) => {
       )
     } else {
       addWrongLetter(letter);
+      const wrongLetters = JSON.parse(localStorage.getItem("wrongLetters") || '[]') || [];
+      wrongLetters.push(letter);
+      localStorage.setItem("wrongLetters", JSON.stringify(wrongLetters));
+
       return (
         finalArray.push({
           letter: letter,
@@ -38,5 +51,16 @@ export const calculateWord = (word: string, winWord: string) => {
     }
   });
 
-  addGuessWord(finalArray.reverse());
+  addGuessWord(finalArray);
+  setKeyboardWord('');
+
+  return true;
 } 
+
+export const saveGame = (guessWords: ILetter[][], word: string, winWord: string) => {
+  if (!calculateWord(word, winWord)) {
+    return;
+  }
+
+  localStorage.setItem("guesses", JSON.stringify(guessWords));
+}

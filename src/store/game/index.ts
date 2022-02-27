@@ -1,3 +1,5 @@
+import winWords from 'database/winWords';
+import moment from 'moment';
 import { Store } from 'pullstate';
 import ILetter from '../../interfaces/IGuess';
 
@@ -8,9 +10,12 @@ interface IGameStore {
   wrongLetters: string[];
 }
 
+var startDate = moment("2022-02-27");
+var endDate = moment(new Date());
+
 export const GameStore = new Store<IGameStore>({
-  guesses: [],
-  wrongLetters: [],
+  guesses: JSON.parse(localStorage.getItem("guesses") || '[]') || [],
+  wrongLetters: JSON.parse(localStorage.getItem("wrongLetters") || '[]') || [],
   actualGuess: 0,
-  winWord: 'ARROZ',
+  winWord: winWords[endDate.diff(startDate, "days")],
 });

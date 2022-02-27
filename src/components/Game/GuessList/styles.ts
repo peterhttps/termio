@@ -1,4 +1,5 @@
 import { LETTER_TYPES } from 'enumerators/defaultVariables';
+import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -48,7 +49,7 @@ export const LetterBox = styled.div<{ disabled?: boolean, type?: string }>`
   }
 `;
 
-export const LineContainer = styled.div`
+export const LineContainer = styled(motion.div)`
   display: flex;
   justify-content: center;
 `;

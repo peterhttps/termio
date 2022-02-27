@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { useGame, useKeyboard } from 'hooks';
+import { useAnimations, useGame, useKeyboard } from 'hooks';
 import { LetterBox, LineContainer, Wrapper } from './styles';
+import { setWrongAnimation } from '../../../store/animations/actions';
 
-interface IProps {
-  guess_quantity: number;
-  word_size: number
+const wordCount = [1, 2, 3, 4, 5];
+
+const wrontAnimationVariants = {
+  wrontAnimation: { x: [20, 0, -20, 0, 20, 0, -20, 0] },
+  idle: { x: 0 },
 }
 
-// const a = [1, 2, 3, 4, 5, 6];
-const b = [1, 2, 3, 4, 5];
-
-const GuessList: React.FC<IProps> = ({ guess_quantity, word_size }: IProps) => {
+const GuessList: React.FC = () => {
   const game = useGame();
   const keyboard = useKeyboard();
+  const animations = useAnimations();
   const [showDisabledArray, setShowDisabledArray] = useState(true);
 
   useEffect(() => {
@@ -23,26 +24,30 @@ const GuessList: React.FC<IProps> = ({ guess_quantity, word_size }: IProps) => {
 
   return (
     <Wrapper>
-     {game.guesses.map((item, i) => {
-       return (
-         <LineContainer key={i}>
-            {b.map((cell, j) => <LetterBox key={cell + '-' + item} type={game.guesses[i][j].type}>{game.guesses[i][j].letter?.toUpperCase()}</LetterBox>)}
-         </LineContainer>
-       )
-     })}
-     
-     {showDisabledArray && <LineContainer>
-       {b.map((cell, j) => <LetterBox key={j}>{keyboard.word[j]}</LetterBox>)}
-     </LineContainer>}
+      {game.guesses.map((item, i) => {
+        return (
+          <LineContainer key={i}>
+              {wordCount.map((cell, j) => <LetterBox key={cell + '-' + item} type={game.guesses[i][j].type}>{game.guesses[i][j].letter?.toUpperCase()}</LetterBox>)}
+          </LineContainer>
+        )
+      })}
+      
+      {showDisabledArray && 
+      <LineContainer 
+          variants={wrontAnimationVariants}
+          transition={{ duration: 0.3 }}
+          animate={animations.wrongWord ? 'wrontAnimation' : 'idle' }
+          onAnimationComplete={() => setWrongAnimation(false)}>
+        {wordCount.map((cell, j) => <LetterBox key={j}>{keyboard.word[j]}</LetterBox>)}
+      </LineContainer>}
 
-    {showDisabledArray && [...Array(game.guesses.length < 5 ? 5 - game.guesses.length : 0)].map((item, i) => {
-      return (
-        <LineContainer key={i}>
-          {b.map((cell, j) => <LetterBox key={cell + '-' + item} disabled />)}
-        </LineContainer>
-      )
-    })}
-
+      {showDisabledArray && [...Array(game.guesses.length < 5 ? 5 - game.guesses.length : 0)].map((item, i) => {
+        return (
+          <LineContainer key={i}>
+            {wordCount.map((cell, j) => <LetterBox key={cell + '-' + item} disabled />)}
+          </LineContainer>
+        )
+      })}
     </Wrapper>
   );
 }

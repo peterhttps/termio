@@ -3,7 +3,7 @@ import { useGame, useKeyboard } from 'hooks';
 import { FaBackspace, FaCheck } from 'react-icons/fa';
 import { KeyboardButton, KeyboardLine, OptionsButton, OptionsContainer, Wrapper } from './styles';
 import { setKeyboardWord, addKeyboardLetter, removeKeyboardLetter } from '../../../store/keyboard/actions';
-import { calculateWord } from './helper';
+import { calculateWord, saveGame } from './helper';
 
 export const KEY_BACKSPACE = 'Backspace';
 export const KEY_ENTER = 'Enter';
@@ -30,8 +30,7 @@ const Keyboard: React.FC = () => {
   const handleKeyboardEnter = () => {
     if (keyboard.word.length === 5) {
       if (game.guesses.length < 6) {
-        calculateWord(keyboard.word, game.winWord);
-        setKeyboardWord('');
+        calculateWord(keyboard.word, game.winWord);   
       }
     }
   }
@@ -55,6 +54,12 @@ const Keyboard: React.FC = () => {
   useEffect(() => {
     setKeyboardWord(keyboard.word.substring(0, 5));
   }, [keyboard.word]);
+
+  useEffect(() => {
+    if (game.guesses.length !== 0) {
+      localStorage.setItem("guesses", JSON.stringify(game.guesses));
+    }
+  }, [game.guesses]);
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);

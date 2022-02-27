@@ -15,3 +15,8 @@ export const Wrapper = styled.div`
 export const OptionsContainer = styled.div`
 
 `;
+
+export const OptionsButton = styled.button`
+  background: none;
+  border: none;
+`;
