@@ -5,11 +5,13 @@ import RulesModal from './RulesModal';
 import StatsModal from './StatsModal/index';
 
 import { OptionsButton, OptionsContainer, Wrapper } from './styles';
+import ConfigModal from './ConfigModal';
 
 const Header: React.FC = () => {
   const game = useGame();
   const [openRulesModal, setOpenRulesModal] = useState(false);
   const [openStatsModal, setOpenStatsModal] = useState(false);
+  const [openConfigModal, setOpenConfigModal] = useState(false);
   
   useEffect(() => {
     if (game.gameEnded) {
@@ -33,12 +35,13 @@ const Header: React.FC = () => {
           <FaChartBar size={20} color={"#B1A7A6"} />
         </OptionsButton>
         <OptionsButton>
-          <FaRegSun size={20} color={"#B1A7A6"} />
+          <FaRegSun size={20} color={"#B1A7A6"} onClick={() => setOpenConfigModal(true)}/>
         </OptionsButton>
       </OptionsContainer>
 
       {openRulesModal && <RulesModal setOpenRulesModal={setOpenRulesModal} />}
       {openStatsModal && <StatsModal setOpenStatsModal={setOpenStatsModal} />}
+      {openConfigModal && <ConfigModal setOpenConfigModal={setOpenConfigModal} />}
     </Wrapper>
   );
 }

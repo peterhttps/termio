@@ -5,7 +5,7 @@ interface IProps {
   setOpenRulesModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const RulesModal: React.FC<IProps> = ({ setOpenRulesModal }: IProps ) => {
+const RulesModal: React.FC<IProps> = ({ setOpenRulesModal }: IProps) => {
 
   return (
     <Wrapper onClick={() => setOpenRulesModal(false)}>
