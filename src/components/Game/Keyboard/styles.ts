@@ -27,7 +27,11 @@ export const KeyboardLine = styled.div`
   justify-content: center;
 `;
 
-export const KeyboardButton = styled.button`
+export const KeyboardButton = styled.button<{ 
+  wrongWord?: boolean;
+  correct?: boolean;
+  otherSpot?: boolean;
+ }>`
   width: 45px;
   height: 50px;
   margin: 4px;
@@ -38,9 +42,19 @@ export const KeyboardButton = styled.button`
   font-size: 24px;
   font-weight: 900;
 
-  ${props => props.disabled && css`
+  ${props => props.wrongWord && css`
     background: #333333;
     color: #B1A7A6;
+  `}
+
+  ${props => props.otherSpot && css`
+    background: #F7A32D;
+    color: #fff;
+  `}
+
+  ${props => props.correct && css`
+    background: #00A32D;
+    color: #fff;
   `}
 
   @media only screen and (max-width: 600px) {

@@ -19,4 +19,5 @@ export const OptionsContainer = styled.div`
 export const OptionsButton = styled.button`
   background: none;
   border: none;
+  margin: 0 4px;
 `;

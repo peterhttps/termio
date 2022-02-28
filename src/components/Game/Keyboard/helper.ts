@@ -4,6 +4,7 @@ import ILetter from "interfaces/IGuess";
 import { addGuessWord, addWrongLetter } from "store/game/actions";
 import { setKeyboardWord } from "store/keyboard/actions";
 import { setWrongAnimation } from '../../../store/animations/actions';
+import { addOtherSpotLetters, addCorrectLetters } from '../../../store/game/actions';
 
 export const calculateWord = (word: string, winWord: string) => {
   const guessArray = Array.from(word);
@@ -21,6 +22,11 @@ export const calculateWord = (word: string, winWord: string) => {
     if (winWordArray.includes(letter) && winWordArray[index] === letter) {
       winWordArray[index] = '';
       
+      addCorrectLetters(letter);
+      const correctLetters = JSON.parse(localStorage.getItem("correctLetters") || '[]') || [];
+      correctLetters.push(letter);
+      localStorage.setItem("correctLetters", JSON.stringify(correctLetters));
+
       return (
         finalArray.push({
           letter: winWord[index].toUpperCase(),
@@ -29,6 +35,11 @@ export const calculateWord = (word: string, winWord: string) => {
       )
     } else if (winWordArray.includes(letter)) {
       winWordArray[winWordArray.indexOf(letter)] = ''; 
+
+      addOtherSpotLetters(letter);
+      const otherSpotLetters = JSON.parse(localStorage.getItem("otherSpotLetters") || '[]') || [];
+      otherSpotLetters.push(letter);
+      localStorage.setItem("otherSpotLetters", JSON.stringify(otherSpotLetters));
 
       return (
         finalArray.push({

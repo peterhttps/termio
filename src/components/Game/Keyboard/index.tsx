@@ -3,7 +3,7 @@ import { useGame, useKeyboard } from 'hooks';
 import { FaBackspace, FaCheck } from 'react-icons/fa';
 import { KeyboardButton, KeyboardLine, OptionsButton, OptionsContainer, Wrapper } from './styles';
 import { setKeyboardWord, addKeyboardLetter, removeKeyboardLetter } from '../../../store/keyboard/actions';
-import { calculateWord, saveGame } from './helper';
+import { calculateWord } from './helper';
 
 export const KEY_BACKSPACE = 'Backspace';
 export const KEY_ENTER = 'Enter';
@@ -18,7 +18,7 @@ const Keyboard: React.FC = () => {
   const keyboard = useKeyboard();
 
   const clickKeyboard = (letter: string) => {
-    if (keyboard.word.length < 5) {
+    if (keyboard.word.length < 5 && !game.gameEnded) {
       addKeyboardLetter(letter);
     }
   }
@@ -78,13 +78,34 @@ const Keyboard: React.FC = () => {
         </OptionsButton>
       </OptionsContainer>
       <KeyboardLine>
-        {Array.from(FIRST_LINE).map(letter => <KeyboardButton key={letter} onClick={() => clickKeyboard(letter)} disabled={game.wrongLetters.includes(letter)}>{letter}</KeyboardButton>)}        
+        {Array.from(FIRST_LINE).map(letter => <KeyboardButton 
+                                                key={letter} 
+                                                onClick={() => clickKeyboard(letter)} 
+                                                wrongWord={game.wrongLetters.includes(letter)}
+                                                correct={game.correctLetters.includes(letter)}
+                                                otherSpot={game.otherSpotLetters.includes(letter)}>
+                                                  {letter}
+                                                </KeyboardButton>)}        
       </KeyboardLine>
       <KeyboardLine>
-        {Array.from(SECOND_LINE).map(letter => <KeyboardButton key={letter} onClick={() => clickKeyboard(letter)} disabled={game.wrongLetters.includes(letter)}>{letter}</KeyboardButton>)}        
+        {Array.from(SECOND_LINE).map(letter => <KeyboardButton 
+                                                key={letter} 
+                                                onClick={() => clickKeyboard(letter)} 
+                                                wrongWord={game.wrongLetters.includes(letter)}
+                                                correct={game.correctLetters.includes(letter)}
+                                                otherSpot={game.otherSpotLetters.includes(letter)}>
+                                                  {letter}
+                                                </KeyboardButton>)}        
       </KeyboardLine>
       <KeyboardLine>
-        {Array.from(THIRD_LINE).map(letter => <KeyboardButton key={letter} onClick={() => clickKeyboard(letter)} disabled={game.wrongLetters.includes(letter)}>{letter}</KeyboardButton>)}        
+        {Array.from(THIRD_LINE).map(letter => <KeyboardButton 
+                                                key={letter} 
+                                                onClick={() => clickKeyboard(letter)} 
+                                                wrongWord={game.wrongLetters.includes(letter)}
+                                                correct={game.correctLetters.includes(letter)}
+                                                otherSpot={game.otherSpotLetters.includes(letter)}>
+                                                  {letter}
+                                                </KeyboardButton>)}        
       </KeyboardLine>
    </Wrapper>
   );
