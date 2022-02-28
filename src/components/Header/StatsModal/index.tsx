@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import { FaShareAlt } from 'react-icons/fa';
+import { useGame } from 'hooks';
 
 import { Wrapper, Container, BigNumber, NumberDescription, StatsContainer, StatsWrapper, GraphContainer, GraphTitle, GraphRow, GraphNumber, GraphProgress, ShareButton } from './styles';
 import IUser from '../../../interfaces/IUser';
 import NextWordCount from '../NextWordCount';
+import { getNormalEndGameMessage } from './helper';
 
 interface IProps {
   setOpenStatsModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 const StatsModal: React.FC<IProps> = ({ setOpenStatsModal }: IProps) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [user, setUser] = useState<IUser>(JSON.parse(localStorage.getItem("userInfo") || '[]'));
+  const game = useGame();
 
   const calculateVictoryPercent = () => {
     if (user.wins === 0) {
@@ -37,6 +41,15 @@ const StatsModal: React.FC<IProps> = ({ setOpenStatsModal }: IProps) => {
     const games = user.winArray[index] * 100;
 
     return (games / user.wins).toFixed(2).toString();
+  }
+
+  const shareClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    console.log(localStorage.getItem("wonToday"))
+    e.stopPropagation();
+    console.log(getNormalEndGameMessage(
+      game.guesses, 
+      JSON.parse(localStorage.getItem("wonToday") || 'false')
+      ));
   }
 
   return (
@@ -96,7 +109,8 @@ const StatsModal: React.FC<IProps> = ({ setOpenStatsModal }: IProps) => {
           </GraphRow>
         </GraphContainer>
 
-        {localStorage.getItem("dayWord") && <ShareButton>
+        {localStorage.getItem("dayWord") && 
+        <ShareButton onClick={shareClick}>
           <FaShareAlt color={"#fff"} size={20} />
           Compartilhar
         </ShareButton>}

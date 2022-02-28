@@ -28,6 +28,7 @@ const GuessList: React.FC = () => {
   useEffect(() => {
     if (game.guesses.length === 6 && !localStorage.getItem("dayWord")) {
       localStorage.setItem("dayWord", game.winWord);
+      localStorage.setItem("wonToday", "false");
       const user: IUser = JSON.parse(localStorage.getItem("userInfo") || '{}');
       user.games += 1;
       localStorage.setItem("userInfo", JSON.stringify(user));
@@ -45,6 +46,7 @@ const GuessList: React.FC = () => {
 
     if (count === 5 && !localStorage.getItem("dayWord")) {
       localStorage.setItem("dayWord", game.winWord);
+      localStorage.setItem("wonToday", "true");
       const user: IUser = JSON.parse(localStorage.getItem("userInfo") || '{}');
       user.games += 1;
       user.wins += 1;

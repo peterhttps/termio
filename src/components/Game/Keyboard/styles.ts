@@ -62,4 +62,10 @@ export const KeyboardButton = styled.button<{
     height: 40px;
     font-size: 16px;
   }
+
+  @media only screen and (max-height: 850px) {
+    width: 30px;
+    height: 40px;
+    font-size: 16px;
+  }
 `;

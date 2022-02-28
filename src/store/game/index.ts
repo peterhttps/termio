@@ -13,7 +13,7 @@ interface IGameStore {
   gameEnded: boolean;
 }
 
-var startDate = moment("2022-02-10");
+var startDate = moment("2022-02-02");
 var endDate = moment(new Date());
 
 if (localStorage.getItem('oldUser') !== 'true') {
@@ -28,7 +28,7 @@ if (localStorage.getItem('oldUser') !== 'true') {
 
 const actualWord = winWords[endDate.diff(startDate, "days")]
 
-if (actualWord !== localStorage.getItem("dayWord")) {
+if (actualWord !== localStorage.getItem("dayWord") && !!localStorage.getItem("dayWord")) {
   localStorage.removeItem("dayWord");
   localStorage.removeItem("guesses");
   localStorage.removeItem("correctLetters");

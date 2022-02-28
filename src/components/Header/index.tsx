@@ -6,12 +6,14 @@ import StatsModal from './StatsModal/index';
 
 import { OptionsButton, OptionsContainer, Wrapper } from './styles';
 import ConfigModal from './ConfigModal';
+import AboutModal from './AboutModal';
 
 const Header: React.FC = () => {
   const game = useGame();
   const [openRulesModal, setOpenRulesModal] = useState(false);
   const [openStatsModal, setOpenStatsModal] = useState(false);
   const [openConfigModal, setOpenConfigModal] = useState(false);
+  const [openAboutModal, setOpenAboutModal] = useState(false);
   
   useEffect(() => {
     if (game.gameEnded) {
@@ -22,7 +24,7 @@ const Header: React.FC = () => {
   return (
     <Wrapper>
       <OptionsContainer>
-        <OptionsButton onClick={() => setOpenRulesModal(true)}>
+        <OptionsButton onClick={() => setOpenAboutModal(true)}>
           <FaRegUserCircle size={20} color={"#B1A7A6"} />
         </OptionsButton>
         <OptionsButton onClick={() => setOpenRulesModal(true)}>
@@ -42,6 +44,7 @@ const Header: React.FC = () => {
       {openRulesModal && <RulesModal setOpenRulesModal={setOpenRulesModal} />}
       {openStatsModal && <StatsModal setOpenStatsModal={setOpenStatsModal} />}
       {openConfigModal && <ConfigModal setOpenConfigModal={setOpenConfigModal} />}
+      {openAboutModal && <AboutModal setOpenAboutModal={setOpenAboutModal} />}
     </Wrapper>
   );
 }

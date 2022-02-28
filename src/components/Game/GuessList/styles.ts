@@ -47,9 +47,23 @@ export const LetterBox = styled.div<{ disabled?: boolean, type?: string }>`
     height: 50px;
     font-size: 32px;
   }
+
+  @media only screen and (max-height: 850px) {
+    width: 50px;
+    height: 50px;
+    font-size: 32px;
+  }
+
+  @media only screen and (max-height: 700px) {
+    width: 35px;
+    height: 35px;
+    font-size: 24px;
+  }
 `;
 
 export const LineContainer = styled(motion.div)`
   display: flex;
   justify-content: center;
+  width: 90%;
+  margin: 0 auto;
 `;
