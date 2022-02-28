@@ -29,6 +29,8 @@ export const BodyContainer = styled.div`
   text-align: center;
   & h1 {
     font-size: 24px;
+    color: #fff;
+    font-weight: 900;
   }
   
   & p {

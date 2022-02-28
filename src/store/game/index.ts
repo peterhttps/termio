@@ -34,6 +34,7 @@ if (actualWord !== localStorage.getItem("dayWord") && !!localStorage.getItem("da
   localStorage.removeItem("correctLetters");
   localStorage.removeItem("wrongLetters");
   localStorage.removeItem("otherSpotLetters");
+  localStorage.removeItem("wonToday");
 }
 
 export const GameStore = new Store<IGameStore>({

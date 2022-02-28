@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaShareAlt } from 'react-icons/fa';
 import { useGame } from 'hooks';
 
-import { Wrapper, Container, BigNumber, NumberDescription, StatsContainer, StatsWrapper, GraphContainer, GraphTitle, GraphRow, GraphNumber, GraphProgress, ShareButton } from './styles';
+import { Wrapper, Container, BigNumber, NumberDescription, StatsContainer, StatsWrapper, GraphContainer, GraphTitle, GraphRow, GraphNumber, GraphProgress, ShareButton, MessageContainer } from './styles';
 import IUser from '../../../interfaces/IUser';
 import NextWordCount from '../NextWordCount';
 import { getNormalEndGameMessage } from './helper';
@@ -14,6 +14,7 @@ const StatsModal: React.FC<IProps> = ({ setOpenStatsModal }: IProps) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [user, setUser] = useState<IUser>(JSON.parse(localStorage.getItem("userInfo") || '[]'));
   const game = useGame();
+  const [messageCopied, setMessageCopied] = useState(false);
 
   const calculateVictoryPercent = () => {
     if (user.wins === 0) {
@@ -46,10 +47,9 @@ const StatsModal: React.FC<IProps> = ({ setOpenStatsModal }: IProps) => {
   const shareClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     console.log(localStorage.getItem("wonToday"))
     e.stopPropagation();
-    console.log(getNormalEndGameMessage(
-      game.guesses, 
-      JSON.parse(localStorage.getItem("wonToday") || 'false')
-      ));
+    const message = getNormalEndGameMessage(game.guesses, JSON.parse(localStorage.getItem("wonToday") || 'false'));
+    navigator.clipboard.writeText(message);
+    setMessageCopied(true)
   }
 
   return (
@@ -116,8 +116,16 @@ const StatsModal: React.FC<IProps> = ({ setOpenStatsModal }: IProps) => {
         </ShareButton>}
 
         <NextWordCount />
-
       </Container>
+
+      {messageCopied && 
+        <MessageContainer>
+          <div>
+            <p>Resultado copiado</p>
+          </div>
+        </MessageContainer>
+      }
+
     </Wrapper>
   );
 }

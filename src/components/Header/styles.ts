@@ -5,11 +5,11 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 8px;
+`;
 
-  & h1 {
-    font-weight: 900;
-    color: #FFFFFF;
-  }
+export const PageTitle = styled.h1`
+  font-weight: 900;
+  color: #fff;
 `;
 
 export const OptionsContainer = styled.div`

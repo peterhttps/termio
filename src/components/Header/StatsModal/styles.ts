@@ -30,8 +30,14 @@ export const Container = styled.div`
     font-size: 24px;
   }
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 650px) {
     width: 80%;
+  }
+
+  @media only screen and (max-height: 650px) {
+     & h1 {
+      font-size: 16px;
+     }
   }
 `;
 
@@ -48,6 +54,10 @@ export const StatsContainer = styled.div`
 export const BigNumber = styled.h2`
   font-weight: 800;
   font-size: 2rem; 
+
+  @media only screen and (max-height: 650px) {
+    font-size: 1.5rem; 
+  }
 `;
 
 export const NumberDescription = styled.p`
@@ -55,12 +65,17 @@ export const NumberDescription = styled.p`
 `;
 
 export const GraphContainer = styled.div`
-
+  width: 100%;
 `;
 
 export const GraphTitle = styled.h2`
   font-weight: 800;
   margin-bottom: 8px;
+  text-align: center;
+
+  @media only screen and (max-height: 650px) {
+    font-size: 16px;
+  }
 `;
 
 export const GraphRow = styled.div`
@@ -72,6 +87,10 @@ export const GraphRow = styled.div`
 export const GraphNumber = styled.p`
   font-weight: 800;
   margin-right: 8px;
+
+  @media only screen and (max-height: 650px) {
+    font-size: 14px;
+  }
 `;
 
 export const GraphProgress = styled.div<{ width?: string }>`
@@ -84,6 +103,10 @@ export const GraphProgress = styled.div<{ width?: string }>`
 
   & p {
     float: right
+  }
+
+  @media only screen and (max-height: 650px) {
+    font-size: 14px;
   }
 `;
 
@@ -103,5 +126,29 @@ export const ShareButton = styled.button`
 
   & svg {
     margin-right: 8px;
+  }
+
+  @media only screen and (max-height: 650px) {
+    font-size: 14px;
+  }
+`;
+
+export const MessageContainer = styled.div`
+  display: flex;
+  z-index: 999;
+  position: absolute; 
+  left: 0; 
+  right: 0; 
+  bottom: 64px;
+  margin-left: auto; 
+  margin-right: auto; 
+  justify-content: center;
+  
+  & div {
+    padding: 16px 32px;
+    background: #E5383B;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: 900;
   }
 `;

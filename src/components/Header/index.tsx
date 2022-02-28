@@ -4,7 +4,7 @@ import { FaQuestion, FaRegSun, FaRegUserCircle, FaChartBar } from 'react-icons/f
 import RulesModal from './RulesModal';
 import StatsModal from './StatsModal/index';
 
-import { OptionsButton, OptionsContainer, Wrapper } from './styles';
+import { OptionsButton, OptionsContainer, PageTitle, Wrapper } from './styles';
 import ConfigModal from './ConfigModal';
 import AboutModal from './AboutModal';
 
@@ -31,7 +31,7 @@ const Header: React.FC = () => {
           <FaQuestion size={20} color={"#B1A7A6"} />
         </OptionsButton>
       </OptionsContainer>
-      <h1>TERMIO</h1>  
+      <PageTitle>TERMIO</PageTitle>  
       <OptionsContainer>
         <OptionsButton onClick={() => setOpenStatsModal(true)}>
           <FaChartBar size={20} color={"#B1A7A6"} />

@@ -67,3 +67,23 @@ export const LineContainer = styled(motion.div)`
   width: 90%;
   margin: 0 auto;
 `;
+
+export const MessageContainer = styled.div`
+  display: flex;
+  z-index: 999;
+  position: absolute; 
+  left: 0; 
+  right: 0; 
+  top: 64px;
+  margin-left: auto; 
+  margin-right: auto; 
+  justify-content: center;
+  
+  & div {
+    padding: 16px 32px;
+    background: #E5383B;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: 900;
+  }
+`;

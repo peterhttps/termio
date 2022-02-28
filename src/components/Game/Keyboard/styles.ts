@@ -20,6 +20,26 @@ export const OptionsButton = styled.button`
   height: 40px;
   border-radius: 5%;
   margin: 0 8px;
+
+  @media only screen and (max-width: 600px) {
+    width: 60px;
+    height: 30px;
+    
+    & svg {
+      height: 16px;
+      width: 16px;
+    }
+  }
+
+  @media only screen and (max-height: 600px) {
+    width: 60px;
+    height: 30px;
+    
+    & svg {
+      height: 16px;
+      width: 16px;
+    }
+  }
 `;
 
 export const KeyboardLine = styled.div`
@@ -67,5 +87,11 @@ export const KeyboardButton = styled.button<{
     width: 30px;
     height: 40px;
     font-size: 16px;
+  }
+
+  @media only screen and (max-height: 600px) {
+    width: 20px;
+    height: 30px;
+    font-size: 12px;
   }
 `;
