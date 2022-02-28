@@ -13,7 +13,7 @@ interface IGameStore {
   gameEnded: boolean;
 }
 
-var startDate = moment("2022-02-02");
+var startDate = moment("2022-02-28");
 var endDate = moment(new Date());
 
 if (localStorage.getItem('oldUser') !== 'true') {
