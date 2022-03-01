@@ -78,7 +78,8 @@ export const MessageContainer = styled.div`
   margin-left: auto; 
   margin-right: auto; 
   justify-content: center;
-  
+  pointer-events: none;
+
   & div {
     padding: 16px 32px;
     background: #E5383B;
