@@ -21,6 +21,12 @@ const Header: React.FC = () => {
     }
   }, [game.gameEnded]);
 
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem('userInfo') || '{}').games === 0) {
+      setOpenRulesModal(true);
+    }
+  }, []);
+
   return (
     <Wrapper>
       <OptionsContainer>
