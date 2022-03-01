@@ -5,7 +5,7 @@ import { useGame } from 'hooks';
 import { Wrapper, Container, BigNumber, NumberDescription, StatsContainer, StatsWrapper, GraphContainer, GraphTitle, GraphRow, GraphNumber, GraphProgress, ShareButton, MessageContainer } from './styles';
 import IUser from '../../../interfaces/IUser';
 import NextWordCount from '../NextWordCount';
-import { getNormalEndGameMessage } from './helper';
+import { getShareMessage } from './helper';
 
 interface IProps {
   setOpenStatsModal: React.Dispatch<React.SetStateAction<boolean>>
@@ -47,7 +47,7 @@ const StatsModal: React.FC<IProps> = ({ setOpenStatsModal }: IProps) => {
   const shareClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     console.log(localStorage.getItem("wonToday"))
     e.stopPropagation();
-    const message = getNormalEndGameMessage(game.guesses, JSON.parse(localStorage.getItem("wonToday") || 'false'));
+    const message = getShareMessage(game.guesses, JSON.parse(localStorage.getItem("wonToday") || 'false'));
     navigator.clipboard.writeText(message);
     setMessageCopied(true)
   }

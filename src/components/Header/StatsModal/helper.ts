@@ -6,7 +6,7 @@ const NORMAL_MODE_EMOJIS: any = {
   'wrong': '⬛',
 }
 
-export function getNormalEndGameMessage(
+export function getShareMessage(
   guesses: ILetter[][],
   isGameWon: boolean,
 ): string {
