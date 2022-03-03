@@ -80,7 +80,7 @@ export const validateWord = (word: string, winWord: string) => {
 
     return (addWrongKeyboard(item));
   });
-  console.log("FINISH");
+
   addGuessWord(validatedGuess);
   setKeyboardWord('');
   return true;

@@ -45,7 +45,6 @@ const StatsModal: React.FC<IProps> = ({ setOpenStatsModal }: IProps) => {
   }
 
   const shareClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    console.log(localStorage.getItem("wonToday"))
     e.stopPropagation();
     const message = getShareMessage(game.guesses, JSON.parse(localStorage.getItem("wonToday") || 'false'));
     navigator.clipboard.writeText(message);

@@ -1,4 +1,8 @@
+import moment from "moment";
 import ILetter from "interfaces/IGuess";
+
+var startDate = moment("2022-02-28");
+var endDate = moment(new Date());
 
 const NORMAL_MODE_EMOJIS: any = {
   'correct': '🟩',
@@ -10,7 +14,7 @@ export function getShareMessage(
   guesses: ILetter[][],
   isGameWon: boolean,
 ): string {
-  let message = `(${isGameWon ? guesses.length : 'X'}/6) Termio \n\n`;
+  let message = `#${endDate.diff(startDate, "days")} (${isGameWon ? guesses.length : 'X'}/6) Termio \n\n`;
 
   message += guesses.map(guess => {
     return guess.map(letter => NORMAL_MODE_EMOJIS[letter.type]).join('') + '\n';

@@ -26,7 +26,7 @@ if (localStorage.getItem('oldUser') !== 'true') {
   localStorage.setItem("oldUser", 'true');
 }
 
-const actualWord = winWords[endDate.diff(startDate, "days")]
+const actualWord = winWords[endDate.diff(startDate, "days")];
 
 if (actualWord !== localStorage.getItem("dayWord") && !!localStorage.getItem("dayWord")) {
   localStorage.removeItem("dayWord");
