@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAnimations, useGame, useKeyboard } from 'hooks';
-import { LetterBox, LineContainer, MessageContainer, Wrapper } from './styles';
+import { LetterBox, LineContainer, Wrapper } from './styles';
 import { setWrongAnimation } from '../../../store/animations/actions';
 import { LETTER_TYPES } from '../../../enumerators/defaultVariables';
 import { setGameEnded } from 'store/game/actions';
@@ -18,13 +18,6 @@ const GuessList: React.FC = () => {
   const keyboard = useKeyboard();
   const animations = useAnimations();
   const [showDisabledArray, setShowDisabledArray] = useState(true);
-  const [isUserWinner, setIsUserWinner] = useState(false);
-
-  useEffect(() => {
-    if (JSON.parse(localStorage.getItem('wonToday') || 'false')) {
-      setIsUserWinner(true);
-    }
-  }, []);
 
   useEffect(() => {
     if (game.guesses.length === 6) {
@@ -33,17 +26,6 @@ const GuessList: React.FC = () => {
   }, [game.guesses.length]);
 
   useEffect(() => {
-    if (game.guesses.length === 6 && !localStorage.getItem("dayWord")) {
-      localStorage.setItem("dayWord", game.winWord);
-      localStorage.setItem("wonToday", "false");
-      const user: IUser = JSON.parse(localStorage.getItem("userInfo") || '{}');
-      user.games += 1;
-      localStorage.setItem("userInfo", JSON.stringify(user));
-
-      setGameEnded(true);
-      setIsUserWinner(false);
-    }
-
     let count = 0;
     game.guesses[game.guesses.length - 1]?.map((item) => {
       if (item.type === LETTER_TYPES.CORRECT) {
@@ -53,6 +35,8 @@ const GuessList: React.FC = () => {
     })
 
     if (count === 5 && !JSON.parse(localStorage.getItem("wonToday") || 'false')) {
+      console.log(!JSON.parse(localStorage.getItem("wonToday") || 'false'));
+      console.log('ENTROU');
       localStorage.setItem("dayWord", game.winWord);
       localStorage.setItem("wonToday", "true");
       const user: IUser = JSON.parse(localStorage.getItem("userInfo") || '{}');
@@ -66,8 +50,21 @@ const GuessList: React.FC = () => {
       localStorage.setItem("userInfo", JSON.stringify(user));
 
       setGameEnded(true);
-      setIsUserWinner(true);
+      return;
     }
+
+    if (game.guesses.length === 6 && !localStorage.getItem("dayWord")) {
+      console.log(JSON.parse(localStorage.getItem("wonToday") || 'false'));
+
+      localStorage.setItem("dayWord", game.winWord);
+      localStorage.setItem("wonToday", "false");
+      const user: IUser = JSON.parse(localStorage.getItem("userInfo") || '{}');
+      user.games += 1;
+      localStorage.setItem("userInfo", JSON.stringify(user));
+
+      setGameEnded(true);
+    }
+  
   }, [game.guesses, game.guesses.length, game.winWord]);
 
   const arraySize = () => {
@@ -84,14 +81,6 @@ const GuessList: React.FC = () => {
 
   return (
     <Wrapper>
-      {game.gameEnded && <MessageContainer>
-        <div>
-          {isUserWinner 
-          ? <p>Muito bem!</p>
-          : <p>A palavra certa era: {game.winWord}</p>}
-        </div>
-      </MessageContainer>}
-
       {game.guesses.map((item, i) => {
         return (
           <LineContainer key={i}>

@@ -28,6 +28,17 @@ export const Container = styled.div`
     line-height: 0;
     margin-bottom: 32px;
     font-size: 24px;
+    font-weight: 800;
+  }
+
+  & h3 {
+    line-height: 0;
+    margin-bottom: 32px;
+    font-size: 18px;
+
+    & span {
+      font-weight: 800;
+    }
   }
 
   @media only screen and (max-width: 650px) {
@@ -72,6 +83,7 @@ export const GraphTitle = styled.h2`
   font-weight: 800;
   margin-bottom: 8px;
   text-align: center;
+  font-size: 18px;
 
   @media only screen and (max-height: 650px) {
     font-size: 16px;

@@ -54,8 +54,10 @@ const StatsModal: React.FC<IProps> = ({ setOpenStatsModal }: IProps) => {
   return (
     <Wrapper onClick={() => setOpenStatsModal(false)}>
       <Container onClick={() => setOpenStatsModal(false)}>
-        <h1>Estatísticas</h1>
-
+        {game.gameEnded 
+        ? JSON.parse(localStorage.getItem("wonToday") || 'false') ? <h1>Muito bem!</h1> : <h3>A palavra certa era: <span>{game.winWord}</span></h3>
+        : <h1>Estatísticas</h1>}
+        
         <StatsWrapper>
           <StatsContainer>
             <BigNumber>{user.games}</BigNumber>
