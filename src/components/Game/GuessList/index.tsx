@@ -52,7 +52,7 @@ const GuessList: React.FC = () => {
       return 0;      
     })
 
-    if (count === 5) {
+    if (count === 5 && !JSON.parse(localStorage.getItem("wonToday") || 'false')) {
       localStorage.setItem("dayWord", game.winWord);
       localStorage.setItem("wonToday", "true");
       const user: IUser = JSON.parse(localStorage.getItem("userInfo") || '{}');

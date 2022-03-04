@@ -10,7 +10,7 @@ const ConfigModal: React.FC<IProps> = ({ setOpenConfigModal }: IProps) => {
     <Wrapper onClick={() => setOpenConfigModal(false)}>
       <Container onClick={() => setOpenConfigModal(false)}>
         <InspiredPhrase>Termio é inspirado em <a href='https://www.nytimes.com/games/wordle/index.html' target="_blank" rel="noreferrer">Wordle</a></InspiredPhrase>
-        <VersionLabel>v0.0.2</VersionLabel>
+        <VersionLabel>v0.0.3</VersionLabel>
       </Container>
     </Wrapper>
   );
