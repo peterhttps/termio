@@ -13,15 +13,15 @@ const AboutModal: React.FC<IProps> = ({ setOpenAboutModal }: IProps) => {
         <BodyContainer>
           <h1>TERMIO</h1>
           <p>Criado em fevereiro de 2022</p>
-          <ContactContainer>
+          <ContactContainer  
+            href="https://github.com/peterhttps" 
+            target="_blank" 
+            rel="noreferrer"
+            onClick={e => e.stopPropagation()}>
             <p>Pedro Lucas</p>
-            <a 
-              href="https://github.com/peterhttps" 
-              target="_blank" 
-              rel="noreferrer"
-              onClick={e => e.stopPropagation()}>
+            <div>
               <FaGithub size={24} color={"#B1A7A6"} />
-            </a>
+            </div>
           </ContactContainer>
         </BodyContainer>
       </Container>

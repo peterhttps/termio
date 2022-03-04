@@ -38,7 +38,7 @@ export const BodyContainer = styled.div`
   }
 `;
 
-export const ContactContainer = styled.div`
+export const ContactContainer = styled.a`
   
   
   display: flex;
@@ -47,9 +47,11 @@ export const ContactContainer = styled.div`
 
   & p {
     font-weight: bold;
+    color: #B1A7A6;
+    text-decoration: underline;
   }
 
-  & a {
+  & div {
     border: none;
     background: none;
     margin-left: 16px;
