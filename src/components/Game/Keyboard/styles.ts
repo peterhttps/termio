@@ -51,6 +51,7 @@ export const KeyboardButton = styled.button<{
   wrongWord?: boolean;
   correct?: boolean;
   otherSpot?: boolean;
+  isColorblindMode?: boolean;
  }>`
   width: 45px;
   height: 50px;
@@ -72,8 +73,18 @@ export const KeyboardButton = styled.button<{
     color: #fff;
   `}
 
+  ${props => props.otherSpot && props.isColorblindMode && css`
+    background: #fe6100;
+    color: #fff;
+  `}
+
   ${props => props.correct && css`
     background: #00A32D;
+    color: #fff;
+  `}
+
+  ${props => props.correct && props.isColorblindMode && css`
+    background: #648fff;
     color: #fff;
   `}
 

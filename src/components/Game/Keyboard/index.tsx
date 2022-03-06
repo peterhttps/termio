@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useGame, useKeyboard } from 'hooks';
+import { useGame, useKeyboard, useConfigurations } from 'hooks';
 import { FaBackspace, FaCheck } from 'react-icons/fa';
 import { KeyboardButton, KeyboardLine, OptionsButton, OptionsContainer, Wrapper } from './styles';
 import { setKeyboardWord, addKeyboardLetter, removeKeyboardLetter } from '../../../store/keyboard/actions';
@@ -16,6 +16,7 @@ const THIRD_LINE =  'ZXCVBNM';
 const Keyboard: React.FC = () => {
   const game = useGame();
   const keyboard = useKeyboard();
+  const configurations = useConfigurations();
 
   const clickKeyboard = (letter: string) => {
     if (keyboard.word.length < 5 && !game.gameEnded) {
@@ -80,6 +81,7 @@ const Keyboard: React.FC = () => {
       <KeyboardLine>
         {Array.from(FIRST_LINE).map(letter => <KeyboardButton 
                                                 key={letter} 
+                                                isColorblindMode={configurations.colorBlindMode}
                                                 onClick={() => clickKeyboard(letter)} 
                                                 wrongWord={game.wrongLetters.includes(letter)}
                                                 correct={game.correctLetters.includes(letter)}
@@ -90,6 +92,7 @@ const Keyboard: React.FC = () => {
       <KeyboardLine>
         {Array.from(SECOND_LINE).map(letter => <KeyboardButton 
                                                 key={letter} 
+                                                isColorblindMode={configurations.colorBlindMode}
                                                 onClick={() => clickKeyboard(letter)} 
                                                 wrongWord={game.wrongLetters.includes(letter)}
                                                 correct={game.correctLetters.includes(letter)}
@@ -100,6 +103,7 @@ const Keyboard: React.FC = () => {
       <KeyboardLine>
         {Array.from(THIRD_LINE).map(letter => <KeyboardButton 
                                                 key={letter} 
+                                                isColorblindMode={configurations.colorBlindMode}
                                                 onClick={() => clickKeyboard(letter)} 
                                                 wrongWord={game.wrongLetters.includes(letter)}
                                                 correct={game.correctLetters.includes(letter)}

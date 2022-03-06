@@ -27,7 +27,7 @@ export const Container = styled.div`
 
 export const InspiredPhrase = styled.p`
   font-weight: bold;
-
+  margin-top: 32px;
   & a {
     color: #D3D3D3;
   }
@@ -39,4 +39,10 @@ export const VersionLabel = styled.p`
   float: right;
   font-weight: bold;
   color: #B1A7A6;
+`;
+
+export const ConfigItem = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;

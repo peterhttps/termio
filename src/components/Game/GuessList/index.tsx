@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useAnimations, useGame, useKeyboard } from 'hooks';
+import { useAnimations, useConfigurations, useGame, useKeyboard } from 'hooks';
 import { LetterBox, LineContainer, Wrapper } from './styles';
 import { setWrongAnimation } from '../../../store/animations/actions';
 import { LETTER_TYPES } from '../../../enumerators/defaultVariables';
@@ -17,6 +17,7 @@ const GuessList: React.FC = () => {
   const game = useGame();
   const keyboard = useKeyboard();
   const animations = useAnimations();
+  const configurations = useConfigurations();
   const [showDisabledArray, setShowDisabledArray] = useState(true);
 
   useEffect(() => {
@@ -84,7 +85,7 @@ const GuessList: React.FC = () => {
       {game.guesses.map((item, i) => {
         return (
           <LineContainer key={i}>
-              {wordCount.map((cell, j) => <LetterBox key={cell + '-' + item} type={game.guesses[i][j].type}>{game.guesses[i][j].letter?.toUpperCase()}</LetterBox>)}
+              {wordCount.map((cell, j) => <LetterBox key={cell + '-' + item} type={game.guesses[i][j].type} isColorblindMode={configurations.colorBlindMode}>{game.guesses[i][j].letter?.toUpperCase()}</LetterBox>)}
           </LineContainer>
         )
       })}

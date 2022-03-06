@@ -1,4 +1,5 @@
 import React from 'react';
+import { useConfigurations } from 'hooks';
 import { BodyContainer, Container, HeaderContainer, LetterBox, LetterLine, Wrapper } from './styles';
 
 interface IProps {
@@ -6,6 +7,7 @@ interface IProps {
 }
 
 const RulesModal: React.FC<IProps> = ({ setOpenRulesModal }: IProps) => {
+  const configurations = useConfigurations();
 
   return (
     <Wrapper onClick={() => setOpenRulesModal(false)}>
@@ -17,27 +19,27 @@ const RulesModal: React.FC<IProps> = ({ setOpenRulesModal }: IProps) => {
         <BodyContainer>
           <p>Cada tentativa deve ser uma palavra que exista. Os acentos e cedilhas são preenchidos automaticamente</p>
 
-          <p>Caso a letra fique verde, ela está na palavra e sua posição está correta</p>
+          <p>Caso a letra fique {configurations.colorBlindMode ? 'dessa cor' : 'verde'}, ela está na palavra e sua posição está correta</p>
           
           <LetterLine>
             <LetterBox>N</LetterBox>
             <LetterBox>O</LetterBox>
             <LetterBox>B</LetterBox>
-            <LetterBox background={"#00A32D"}>R</LetterBox>
+            <LetterBox background={configurations.colorBlindMode ? "#648fff" :"#00A32D"}>R</LetterBox>
             <LetterBox>E</LetterBox>
           </LetterLine>
           
-          <p>Caso a letra fique amarela, ela está na palavra, mas na posição errada</p>
+          <p>Caso a letra fique {configurations.colorBlindMode ? 'dessa cor' : 'verde'}, ela está na palavra, mas na posição errada</p>
 
           <LetterLine>
-            <LetterBox background={"#F7A32D"}>P</LetterBox>
+            <LetterBox background={configurations.colorBlindMode ? "#fe6100" : "#F7A32D"}>P</LetterBox>
             <LetterBox>R</LetterBox>
             <LetterBox>O</LetterBox>
             <LetterBox>S</LetterBox>
             <LetterBox>A</LetterBox>
           </LetterLine>
 
-          <p>Caso a letra fique cinza escuro, ela não está na palavra</p>
+          <p>Caso a letra fique {configurations.colorBlindMode ? 'dessa cor' : 'verde'}, ela não está na palavra</p>
 
           <LetterLine>
             <LetterBox>C</LetterBox>

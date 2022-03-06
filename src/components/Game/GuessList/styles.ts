@@ -8,7 +8,11 @@ export const Wrapper = styled.div`
   margin-top: 16px;
 `;
 
-export const LetterBox = styled.div<{ disabled?: boolean, type?: string }>`
+export const LetterBox = styled.div<{ 
+  disabled?: boolean, 
+  type?: string,
+  isColorblindMode?: boolean,
+  }>`
   width: 70px;
   height: 70px;
   border: 3px solid #B1A7A6;
@@ -28,6 +32,11 @@ export const LetterBox = styled.div<{ disabled?: boolean, type?: string }>`
     border: 3px solid transparent;
   `}
 
+  ${props => props.type === LETTER_TYPES.CORRECT && props.isColorblindMode && css`
+    background: #648fff;
+    border: 3px solid transparent;
+  `}
+
   ${props => props.type === LETTER_TYPES.WRONG && css`
     background: #333333;
     border: 3px solid transparent;
@@ -35,6 +44,12 @@ export const LetterBox = styled.div<{ disabled?: boolean, type?: string }>`
 
   ${props => props.type === LETTER_TYPES.OTHER_SPOT && css`
     background: #F7A32D;
+    border: 3px solid transparent;
+  `}
+
+  
+  ${props => props.type === LETTER_TYPES.OTHER_SPOT && props.isColorblindMode && css`
+    background: #fe6100;
     border: 3px solid transparent;
   `}
 
