@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaShareAlt } from 'react-icons/fa';
-import { useGame } from 'hooks';
+import { useGame, useConfigurations } from 'hooks';
 
 import { Wrapper, Container, BigNumber, NumberDescription, StatsContainer, StatsWrapper, GraphContainer, GraphTitle, GraphRow, GraphNumber, GraphProgress, ShareButton, MessageContainer } from './styles';
 import IUser from '../../../interfaces/IUser';
@@ -11,9 +11,11 @@ interface IProps {
   setOpenStatsModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 const StatsModal: React.FC<IProps> = ({ setOpenStatsModal }: IProps) => {
+  const game = useGame();
+  const configuration = useConfigurations();
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [user, setUser] = useState<IUser>(JSON.parse(localStorage.getItem("userInfo") || '[]'));
-  const game = useGame();
   const [messageCopied, setMessageCopied] = useState(false);
 
   const calculateVictoryPercent = () => {
@@ -74,37 +76,37 @@ const StatsModal: React.FC<IProps> = ({ setOpenStatsModal }: IProps) => {
           <GraphTitle>Distribuição de partidas</GraphTitle>
           <GraphRow>
             <GraphNumber>1</GraphNumber>
-            <GraphProgress width={calculateWidhtProgress(0) + '%'}>
+            <GraphProgress width={calculateWidhtProgress(0) + '%'} isColorblindMode={configuration.colorBlindMode}>
               <p>{user.winArray[0]}</p>
             </GraphProgress>
           </GraphRow>
           <GraphRow>
             <GraphNumber>2</GraphNumber>
-            <GraphProgress width={calculateWidhtProgress(1) + '%'}>
+            <GraphProgress width={calculateWidhtProgress(1) + '%'} isColorblindMode={configuration.colorBlindMode}>
                <p>{user.winArray[1]}</p>
             </GraphProgress>
           </GraphRow>
           <GraphRow>
             <GraphNumber>3</GraphNumber>
-            <GraphProgress width={calculateWidhtProgress(2) + '%'}>
+            <GraphProgress width={calculateWidhtProgress(2) + '%'} isColorblindMode={configuration.colorBlindMode}>
                <p>{user.winArray[2]}</p>
             </GraphProgress>
           </GraphRow>
           <GraphRow>
             <GraphNumber>4</GraphNumber>
-            <GraphProgress width={calculateWidhtProgress(3) + '%'}>
+            <GraphProgress width={calculateWidhtProgress(3) + '%'} isColorblindMode={configuration.colorBlindMode}>
                <p>{user.winArray[3]}</p>
             </GraphProgress>
           </GraphRow>
           <GraphRow>
             <GraphNumber>5</GraphNumber>
-            <GraphProgress width={calculateWidhtProgress(4) + '%'}>
+            <GraphProgress width={calculateWidhtProgress(4) + '%'} isColorblindMode={configuration.colorBlindMode}>
                <p>{user.winArray[4]}</p>
             </GraphProgress>
           </GraphRow>
           <GraphRow>
             <GraphNumber>6</GraphNumber>
-            <GraphProgress width={calculateWidhtProgress(5) + '%'}>
+            <GraphProgress width={calculateWidhtProgress(5) + '%'} isColorblindMode={configuration.colorBlindMode}>
                <p>{user.winArray[5]}</p>
             </GraphProgress>
           </GraphRow>

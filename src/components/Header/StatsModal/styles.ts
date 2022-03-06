@@ -105,8 +105,8 @@ export const GraphNumber = styled.p`
   }
 `;
 
-export const GraphProgress = styled.div<{ width?: string }>`
-  background: #00A32D;
+export const GraphProgress = styled.div<{ width?: string, isColorblindMode?: boolean }>`
+  background: ${props => props.isColorblindMode ? '#648fff' : '#00A32D'};
   width: ${props => props.width};
   border-radius: 2px;
   color: white;

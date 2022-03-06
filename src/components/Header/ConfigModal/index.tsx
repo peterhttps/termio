@@ -30,7 +30,7 @@ const ConfigModal: React.FC<IProps> = ({ setOpenConfigModal }: IProps) => {
             width={52}/>
         </ConfigItem>
         <InspiredPhrase>Termio é inspirado em <a href='https://www.nytimes.com/games/wordle/index.html' target="_blank" rel="noreferrer">Wordle</a></InspiredPhrase>
-        <VersionLabel>v0.1.0</VersionLabel>
+        <VersionLabel>v0.1.1</VersionLabel>
       </Container>
     </Wrapper>
   );
