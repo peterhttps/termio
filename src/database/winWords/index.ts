@@ -71,7 +71,14 @@ const winWords = [
   'SETOR',
   'TRELA',
   'TURNO',
-  'GESTO'
+  'GESTO',
+  'FORMA',
+  'BANJO',
+  'BLUSA',
+  'TARDE',
+  'ETAPA',
+  'ZERAR',
+  'LUNAR',
 ];
 
 export default winWords;
