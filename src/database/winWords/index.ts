@@ -79,6 +79,8 @@ const winWords = [
   'ETAPA',
   'ZERAR',
   'LUNAR',
+  'VIRAR',
+  'POMAR'
 ];
 
 export default winWords;
