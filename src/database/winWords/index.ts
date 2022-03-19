@@ -80,7 +80,8 @@ const winWords = [
   'ZERAR',
   'LUNAR',
   'VIRAR',
-  'POMAR'
+  'POMAR',
+  'PEDIR',
 ];
 
 export default winWords;
