@@ -37,6 +37,17 @@ if (actualWord !== localStorage.getItem("dayWord") && !!localStorage.getItem("da
   localStorage.removeItem("wonToday");
 }
 
+if (localStorage.getItem('today') !== `${moment(new Date()).dayOfYear()}`) {
+  localStorage.removeItem("dayWord");
+  localStorage.removeItem("guesses");
+  localStorage.removeItem("correctLetters");
+  localStorage.removeItem("wrongLetters");
+  localStorage.removeItem("otherSpotLetters");
+  localStorage.removeItem("wonToday");
+}
+
+localStorage.setItem('today', `${moment(new Date()).dayOfYear()}`);
+
 export const GameStore = new Store<IGameStore>({
   guesses: JSON.parse(localStorage.getItem("guesses") || '[]') || [],
   wrongLetters: JSON.parse(localStorage.getItem("wrongLetters") || '[]') || [],
