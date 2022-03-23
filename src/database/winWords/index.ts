@@ -82,6 +82,7 @@ const winWords = [
   'VIRAR',
   'POMAR',
   'PEDIR',
+  'FEIXE',
 ];
 
 export default winWords;
