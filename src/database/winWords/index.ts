@@ -84,6 +84,8 @@ const winWords = [
   'PEDIR',
   'FEIXE',
   'PRAGA',
+  'ROLHA',
+  'MILHO'
 ];
 
 export default winWords;
