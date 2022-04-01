@@ -66,6 +66,7 @@ const winWords = [
   'BACIA',
   'TERNO',
   'ANEXO',
+  'MORTE',
   'SAQUE',
   'PLENO',
   'SETOR',
@@ -86,7 +87,8 @@ const winWords = [
   'PRAGA',
   'ROLHA',
   'MILHO',
-  'CAIXA'
+  'CAIXA',
+  'SORTE'
 ];
 
 export default winWords;
