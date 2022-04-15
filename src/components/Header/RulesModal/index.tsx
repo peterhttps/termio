@@ -29,7 +29,7 @@ const RulesModal: React.FC<IProps> = ({ setOpenRulesModal }: IProps) => {
             <LetterBox>E</LetterBox>
           </LetterLine>
           
-          <p>Caso a letra fique {configurations.colorBlindMode ? 'dessa cor' : 'verde'}, ela está na palavra, mas na posição errada</p>
+          <p>Caso a letra fique {configurations.colorBlindMode ? 'dessa cor' : 'amarela'}, ela está na palavra, mas na posição errada</p>
 
           <LetterLine>
             <LetterBox background={configurations.colorBlindMode ? "#fe6100" : "#F7A32D"}>P</LetterBox>
@@ -39,7 +39,7 @@ const RulesModal: React.FC<IProps> = ({ setOpenRulesModal }: IProps) => {
             <LetterBox>A</LetterBox>
           </LetterLine>
 
-          <p>Caso a letra fique {configurations.colorBlindMode ? 'dessa cor' : 'verde'}, ela não está na palavra</p>
+          <p>Caso a letra fique {configurations.colorBlindMode ? 'dessa cor' : 'cinza'}, ela não está na palavra</p>
 
           <LetterLine>
             <LetterBox>C</LetterBox>
