@@ -89,7 +89,13 @@ const winWords = [
   'MILHO',
   'CAIXA',
   'SORTE',
-  'COISA'
+  'COISA',
+  'RINHA',
+  'MANTO',
+  'ZEBRA',
+  'RANGO',
+  'SALTO',
+  'GRAXA',
 ];
 
 export default winWords;
