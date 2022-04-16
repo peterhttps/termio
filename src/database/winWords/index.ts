@@ -96,6 +96,7 @@ const winWords = [
   'RANGO',
   'SALTO',
   'GRAXA',
+  'TRIGO',
 ];
 
 export default winWords;
