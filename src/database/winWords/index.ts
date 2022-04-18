@@ -99,7 +99,8 @@ const winWords = [
   'TRIGO',
   'SENHA',
   'MANGA',
-  'CERTO'
+  'CERTO',
+  'ROSTO'
 ];
 
 export default winWords;
