@@ -100,7 +100,8 @@ const winWords = [
   'SENHA',
   'MANGA',
   'CERTO',
-  'ROSTO'
+  'ROSTO',
+  'CARTA'
 ];
 
 export default winWords;
