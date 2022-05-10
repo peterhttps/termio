@@ -101,7 +101,19 @@ const winWords = [
   'MANGA',
   'CERTO',
   'ROSTO',
-  'CARTA'
+  'CARTA',
+  'VINHO',
+  'PALCO',
+  'MENTA',
+  'RELVA',
+  'PRIMO',
+  'JUNHO',
+  'JULHO',
+  'POSSE',
+  'TRIBO',
+  'CRAVO',
+  'GASTO',
+  'TREVA'
 ];
 
 export default winWords;
