@@ -113,7 +113,8 @@ const winWords = [
   'TRIBO',
   'CRAVO',
   'GASTO',
-  'TREVA'
+  'TREVA',
+  'CHINA',
 ];
 
 export default winWords;
