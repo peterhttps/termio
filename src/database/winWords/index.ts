@@ -115,7 +115,9 @@ const winWords = [
   'GASTO',
   'TREVA',
   'CHINA',
-  'PINTO'
+  'PINTO',
+  'MISTO',
+  'CINTO',
 ];
 
 export default winWords;
