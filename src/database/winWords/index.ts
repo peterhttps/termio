@@ -120,7 +120,9 @@ const winWords = [
   'CINTO',
   'DARDO',
   'PONTO',
-  'SAMBA'
+  'SAMBA',
+  'BINGO',
+  'SURDO'
 ];
 
 export default winWords;
