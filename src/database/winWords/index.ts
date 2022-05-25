@@ -122,7 +122,8 @@ const winWords = [
   'PONTO',
   'SAMBA',
   'BINGO',
-  'SURDO'
+  'SURDO',
+  'MAGRO'
 ];
 
 export default winWords;
