@@ -129,7 +129,8 @@ const winWords = [
   'MAMBA',
   'PLUMA',
   'CISCO',
-  'PRIMA'
+  'PRIMA',
+  'GRITO'
 ];
 
 export default winWords;
