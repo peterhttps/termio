@@ -132,6 +132,7 @@ const winWords = [
   'PRIMA',
   'GRITO',
   'PANDA',
+  'FILHO'
 ];
 
 export default winWords;
